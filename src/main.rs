@@ -75,6 +75,7 @@ fn parse_args() -> Arguments {
                 .takes_value(true)
                 .required(false)
                 .default_value("<NULL>")
+                .conflicts_with("input")
                 .allow_invalid_utf8(true),
         )
         .get_matches();
