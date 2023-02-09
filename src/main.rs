@@ -136,13 +136,23 @@ fn convert_file(infile: &str, outfile: &str, size_val: (u32, u32), exact: bool) 
         i.resize(size_val.0, size_val.1, image::imageops::Lanczos3)
     };
     resized.save(outfile).expect("Error on save");
-    println!(
-        "{} -> {} : {}x{}",
-        infile.red(),
-        outfile.blue(),
-        resized.width(),
-        resized.height()
-    );
+    if cfg!(unix) {
+        println!(
+            "{} -> {} : {}x{}",
+            infile.red(),
+            outfile.blue(),
+            resized.width(),
+            resized.height()
+        );
+    } else {
+        println!(
+            "{} -> {} : {}x{}",
+            infile,
+            outfile,
+            resized.width(),
+            resized.height()
+        );
+    }
 }
 
 /// main function
