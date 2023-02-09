@@ -181,7 +181,7 @@ fn main() -> std::io::Result<()> {
         let ls = build_list(&args.list.unwrap());
         for i in ls {
             let ext = std::path::Path::new(&i).extension().unwrap();
-            let path = i.find(&ext.to_string_lossy().to_string()).unwrap();
+            let path = i.rfind(&ext.to_string_lossy().to_string()).unwrap();
             let lpath = &i[..path];
             let ft = if args.dst == None {
                 ext.to_string_lossy().to_string()
